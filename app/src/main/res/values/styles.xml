@@ -1,0 +1,18 @@
+<resources>
+    <style name="Widget.Theme.RecyclerViewTest1.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style>
+
+    <style name="Widget.Theme.RecyclerViewTest1.ButtonBar.Fullscreen" parent="">
+        <item name="android:background">@color/black_overlay</item>
+        <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
+    </style>
+
+    <style name="title_text_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">35dp</item>
+        <item name="android:fontFamily">@font/belgrano</item>
+        <item name="android:textColor">#282B2C</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+</resources>

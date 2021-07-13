@@ -5,11 +5,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -17,6 +20,7 @@ import rocks.talha.recyclerviewtest1.adapter.RecyclerViewAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String MESSAGE_ID = "ideaID";
     private EditText ideaTxt;
     private EditText descriptionTxt;
     private Button saveButton;
@@ -63,6 +67,16 @@ public class MainActivity extends AppCompatActivity {
                 ideaTitleArrayList.add(ideaString);
                 ideaDescriptionArrayList.add(descriptionString);
 
+
+                //sharedpref work
+                SharedPreferences sharedPref = getSharedPreferences("mykey", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString("value", ideaTitleArrayList.toString());
+                editor.putString("description", ideaDescriptionArrayList.toString());
+                editor.commit();
+
+
+
                 //setting text fields to empty after clicking add button
                 ideaTxt.setText("");
                 descriptionTxt.setText("");
@@ -78,10 +92,9 @@ public class MainActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Log.d("HeyActivity", "onClick: " + ideaTitleArrayList.size());
-                Intent intent = new Intent(MainActivity.this, SavedActivity.class);
 
-                //passing arraylist values to saved activity
+                /*passing arraylist values to SavedActivity*/
+                Intent intent = new Intent(MainActivity.this, SavedActivity.class);
                 intent.putStringArrayListExtra("ideas", ideaTitleArrayList);
                 intent.putStringArrayListExtra("descriptions", ideaDescriptionArrayList);
                 startActivity(intent);
